@@ -1,5 +1,5 @@
 import './style.css'
-import './01-srp/product-bloc'
+import './02-ocp/open-close';
 
 const app = document.querySelector<HTMLDivElement>('#app')!
 
