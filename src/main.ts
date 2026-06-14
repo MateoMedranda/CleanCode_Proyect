@@ -1,5 +1,5 @@
 import './style.css'
-import './04-isp/bird-catalog';
+import './05-dip/post-service';
 
 const app = document.querySelector<HTMLDivElement>('#app')!
 
