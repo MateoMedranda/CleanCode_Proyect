@@ -1,5 +1,5 @@
 import './style.css'
-import './02-ocp/open-close';
+import './03-lsp/vehicle-manager';
 
 const app = document.querySelector<HTMLDivElement>('#app')!
 
