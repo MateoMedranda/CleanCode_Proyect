@@ -1,5 +1,5 @@
 import './style.css'
-import './solid/05-dependency-a'
+import './05-dip/post-service';
 
 const app = document.querySelector<HTMLDivElement>('#app')!
 
