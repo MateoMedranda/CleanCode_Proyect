@@ -1,5 +1,5 @@
 import './style.css'
-import './03-lsp/vehicle-manager';
+import './04-isp/bird-catalog';
 
 const app = document.querySelector<HTMLDivElement>('#app')!
 

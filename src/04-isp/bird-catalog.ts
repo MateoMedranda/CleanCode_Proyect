@@ -1,39 +1,48 @@
-
-/**
- * VIOLACIÓN AL PRINCIPIO DE SEGREGACIÓN DE INTERFAZ (ISP)
- * 
- * El catálogo de fauna define una interfaz "gorda" que obliga a las aves 
- * a implementar métodos que no les corresponden según su naturaleza.
- */
-
 interface Bird {
     eat(): void;
-    fly(): void;
+}
+
+interface SwimmingBird {
     swim(): void;
 }
 
-export class Toucan implements Bird {
-    public eat() { console.log('El Tucán está comiendo frutas.'); }
-    public fly() { console.log('El Tucán vuela sobre la selva.'); }
-    public swim() { console.log('El Tucán no suele nadar, pero implemento el método vacío.'); }
+interface RunningBird{
+    run(): void;
 }
 
-export class Hummingbird implements Bird {
-    public eat() { console.log('El Colibrí busca néctar.'); }
-    public fly() { console.log('El Colibrí aletea rápidamente.'); }
-    public swim() { throw new Error('Un colibrí no puede nadar'); }
+interface FlyingBird{
+    fly(): void;
 }
 
-/**
- * VIOLACIÓN FLAGRANTE: El Avestruz es un ave, pero NO VUELA.
- * La interfaz Bird le obliga a implementar fly(), causando una excepción en tiempo de ejecución
- * o un comportamiento inesperado.
- */
-export class Ostrich implements Bird {
-    public eat() { console.log('El Avestruz come hierbas.'); }
-    public fly() { 
-        // ¡Error! Violación de ISP.
-        throw new Error('Las avestruces NO vuelan.'); 
+(() => {
+    class Toucan implements Bird, FlyingBird {
+        public eat() { console.log('El Tucán está comiendo frutas.'); }
+        public fly() { console.log('El Tucán vuela sobre la selva.'); }
+        public swim() { console.log('El Tucán no suele nadar, pero implemento el método vacío.'); }
     }
-    public swim() { console.log('El Avestruz puede nadar si es necesario.'); }
-}
+
+    class Hummingbird implements Bird, FlyingBird {
+        public eat() { console.log('El Colibrí busca néctar.'); }
+        public fly() { console.log('El Colibrí aletea rápidamente.'); }
+    }
+
+    class Ostrich implements Bird, RunningBird {
+        public eat() { console.log('El Avestruz come hierbas.'); }
+        public run() { console.log('El Avestruz corre velozmente.'); }
+        public swim() { console.log('El Avestruz puede nadar si es necesario.'); }
+    }
+
+    const tucan = new Toucan();
+    tucan.eat();
+    tucan.fly();
+    tucan.swim();
+
+    const colibri = new Hummingbird();
+    colibri.eat();
+    colibri.fly();
+
+    const avestruz = new Ostrich();
+    avestruz.eat();
+    avestruz.run();
+    avestruz.swim();
+})();
